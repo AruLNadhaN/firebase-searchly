@@ -13,6 +13,8 @@ var rootRef = require("firebase-admin");
 
 var serviceAccount = require("/shopper-3a019-firebase-adminsdk-nah89-e54b6c4602.json");
 
+var port = process.env.PORT || 8000
+
 rootRef.initializeApp({
   credential: Firebase.credential.cert(serviceAccount),
   databaseURL: config.firebaseUrl
@@ -57,3 +59,7 @@ function remove(snapshot){
         }
     });
 }
+
+server.listen(port, function() {
+    console.log("App is running on port " + port);
+});
