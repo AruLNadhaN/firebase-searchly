@@ -5,16 +5,16 @@ var Firebase = require('firebase');
 var elasticsearch = require('elasticsearch');
  
 var config = {
-    firebaseUrl: '*firebaseUrl*',
-    elasticSearchUrl: '*elasticSearchUrl*'
+    firebaseUrl: 'https://shopper-3a019.firebaseio.com/',
+    elasticSearchUrl: 'https://site:9df3e624e3b184d9fd971bc1fa7fe5e7@ori-eu-west-1.searchly.com'
 }
 
 var rootRef = require("firebase-admin");
 
-var serviceAccount = require("*firebase-admin.json*");
+var serviceAccount = require("/shopper-3a019-firebase-adminsdk-nah89-e54b6c4602.json");
 
 rootRef.initializeApp({
-  credential: rootRef.credential.cert(serviceAccount),
+  credential: Firebase.credential.cert(serviceAccount),
   databaseURL: config.firebaseUrl
 });
 
@@ -24,7 +24,7 @@ var client = new elasticsearch.Client({
     host: config.elasticSearchUrl
 });
  
-var chatsRef = rootRef.child('chatrooms');
+var chatsRef = rootRef.child('Products');
  
 chatsRef.on('child_added', upsert);
 chatsRef.on('child_changed', upsert);
